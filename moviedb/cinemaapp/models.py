@@ -6,7 +6,7 @@ class Rater(models.Model):
 
     MALE = 'M'
     FEMALE = 'F'
-    (
+    GENDER_CHOICES = (
         (MALE, 'M'),
         (FEMALE, 'F'),
 
@@ -18,7 +18,7 @@ class Rater(models.Model):
     zipcode = models.CharField(max_length=5)
 
     def __str__(self):
-        return (self.id)
+        return str(self.id)
 
 
 class Movie(models.Model):
