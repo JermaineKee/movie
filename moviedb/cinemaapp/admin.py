@@ -9,7 +9,7 @@ class RaterAdmin(admin.ModelAdmin):
 
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'rater', 'movie', 'rating']
+    list_display = ['id', 'rater', 'movie', 'stars']
 
 
 class MovieAdmin(admin.ModelAdmin):

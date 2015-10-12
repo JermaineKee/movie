@@ -34,11 +34,10 @@ class Movie(models.Model):
 class Rating(models.Model):
     rater = models.ForeignKey(Rater)
     movie = models.ForeignKey(Movie)
-    rating = models.IntegerField()
+    stars = models.IntegerField()
 
     def __str__(self):
-        return 'Rater {}, Title: {}, Rating: {}'.format
-        (self.rater, self.movie, self.rating)
+        return '@{} gives {} {}*'.format(self.rater, self.movie, self.stars)
 
 
 def load_user_data():
@@ -103,15 +102,14 @@ def load_ratings_data():
 
     with open('ml-1m/ratings.dat') as f:
         reader = csv.DictReader([line.replace('::', '\t') for line in f],
-                                fieldnames='UserID::MovieID::Rating::Timestamp'
-                                .split('::'),
+                                fieldnames=['UserID', 'MovieID', 'Score'],
                                 delimiter='\t')
         for row in reader:
             rating = {
                 'fields': {
                     'rater': row['UserID'],
                     'movie': row['MovieID'],
-                    'rating': row['Rating'],
+                    'stars': row['Score'],
                 },
                 'model': 'cinemaapp.Rating',
             }
