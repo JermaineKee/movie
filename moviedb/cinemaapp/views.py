@@ -28,6 +28,15 @@ def rater_detail(request, rater_id):
                    'movie_ratings': movie_ratings})
 
 
+def all_movies(request):
+    movie = Movie.objects.annotate(num_ratings=Count('rating')) \
+                         .order_by('-num_ratings')[:20]
+
+    return render(request,
+                  'cinemaapp/all_movies_detail.html',
+                  {'movie': movie})
+
+
 def top_movies(request):
 
     popular_movies = Movie.objects.annotate(num_ratings=Count('rating')) \

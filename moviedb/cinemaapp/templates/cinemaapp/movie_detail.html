@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <title>CinemaApp</title>
-  </head>
-
-  <body>
+{% extends "base.html" %}
 
     <h2>{{ movie.title }}</h2>
 
@@ -16,5 +9,3 @@
       <li><a href="{% url 'rater_detail' rating.rater }">{{ rating.rater }}</a>:
     {% endfor %}
     </ul>
-  </body>
-</html>
